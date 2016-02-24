@@ -5,6 +5,7 @@ use dmstr\widgets\Alert;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+\app\assets\AppAsset::register($this);
 dmstr\web\AdminLteAsset::register($this);
 \app\assets\AdminLtePluginAsset::register($this);
 ?>

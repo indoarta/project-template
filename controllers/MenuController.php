@@ -135,6 +135,22 @@ class MenuController extends Controller
         }
 	}
 
+    public function actionSave(){
+        $str = $_POST['str'];
+        $trs = explode("||", $str);
+        $no = 1;
+        foreach($trs as $tr){
+            $obj = explode("[=]", $tr);
+            $menu = Menu::find()->where(["id"=>$obj[0]])->one();
+            $menu->name = $obj[1];
+            $menu->controller = $obj[2];
+            $menu->parent_id = $obj[3];
+            $menu->order = $no;
+            $menu->save();
+            $no++;
+        }
+    }
+
 	/**
 	 * Finds the Menu model based on its primary key value.
 	 * If the model is not found, a 404 HTTP exception will be thrown.
