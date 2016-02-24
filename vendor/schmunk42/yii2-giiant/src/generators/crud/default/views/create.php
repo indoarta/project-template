@@ -18,21 +18,16 @@ use yii\helpers\Html;
 * @var <?= ltrim($generator->modelClass, '\\') ?> $model
 */
 
-$this->title = <?= $generator->generateString('Create') ?>;
-$this->params['breadcrumbs'][] = ['label' => '<?= Inflector::pluralize(
-    Inflector::camel2words(StringHelper::basename($generator->modelClass))
-) ?>', 'url' => ['index']];
+$this->title = <?= $generator->generateString('Tambah Baru') ?>;
+$this->params['breadcrumbs'][] = ['label' => '<?= Inflector::camel2words(StringHelper::basename($generator->modelClass)) ?>', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="giiant-crud <?= Inflector::camel2id(StringHelper::basename($generator->modelClass), '-', true) ?>-create">
 
-    <p class="pull-left">
-        <?= "<?= " ?>Html::a(<?= $generator->generateString('Cancel') ?>, \yii\helpers\Url::previous(), ['class' => 'btn btn-default']) ?>
-    </p>
-    <div class="clearfix"></div>
+<p class="pull-left">
+    <?= "<?= " ?>Html::a(<?= $generator->generateString('Kembali') ?>, \yii\helpers\Url::previous(), ['class' => 'btn btn-default']) ?>
+</p>
+<div class="clearfix"></div>
 
-    <?= "<?= " ?>$this->render('_form', [
-    'model' => $model,
-    ]); ?>
-
-</div>
+<?= "<?= " ?>$this->render('_form', [
+'model' => $model,
+]); ?>

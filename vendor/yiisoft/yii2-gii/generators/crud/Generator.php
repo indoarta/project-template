@@ -203,7 +203,8 @@ class Generator extends \yii\gii\Generator
     public function getNameAttribute()
     {
         foreach ($this->getColumnNames() as $name) {
-            if (!strcasecmp($name, 'name') || !strcasecmp($name, 'title')) {
+            if (!strcasecmp($name, 'name') || !strcasecmp($name, 'title') || !strcasecmp($name, 'nama')
+                || !strcasecmp($name, 'judul')) {
                 return $name;
             }
         }

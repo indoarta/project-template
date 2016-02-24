@@ -31,98 +31,40 @@ use \dmstr\bootstrap\Tabs;
 
 ?>
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h2>
-        <?php $label = StringHelper::basename($generator->modelClass); ?>
-        <?= "<?= \$model->" . $generator->getModelNameAttribute($generator->modelClass) . " ?>" ?>
-        </h2>
-    </div>
+<div class="box box-info">
+    <div class="box-body">
+        <?= "<?php " ?>$form = ActiveForm::begin([
+        'id' => '<?= $model->formName() ?>',
+        'layout' => '<?= $generator->formLayout ?>',
+        'enableClientValidation' => true,
+        'errorSummaryCssClass' => 'error-summary alert alert-error'
+        ]
+        );
+        ?>
+        <?php
+        foreach ($safeAttributes as $attribute) {
 
-    <div class="panel-body">
+            $prepend = $generator->prependActiveField($attribute, $model);
+            $field   = $generator->activeField($attribute, $model);
+            $append  = $generator->appendActiveField($attribute, $model);
 
-        <div class="<?= \yii\helpers\Inflector::camel2id(
-            StringHelper::basename($generator->modelClass),
-            '-',
-            true
-        ) ?>-form">
+            if ($prepend) {
+                echo "\n\t\t\t" . $prepend;
+            }
+            if ($field) {
+                echo "\n\t\t\t<?= " . $field . " ?>";
+            }
+            if ($append) {
+                echo "\n\t\t\t" . $append;
+            }
+        }
+        ?>
+        <hr/>
+        <?= "<?php " ?>echo $form->errorSummary($model); ?>
+        <?= "<?= " ?>Html::submitButton("<i class="fa fa-save"></i> Simpan", ['id' => 'save-' . $model->formName(), 'class' => 'btn btn-success']);
+        ?>
 
-            <?= "<?php " ?>$form = ActiveForm::begin([
-            'id' => '<?= $model->formName() ?>',
-            'layout' => '<?= $generator->formLayout ?>',
-            'enableClientValidation' => true,
-            'errorSummaryCssClass' => 'error-summary alert alert-error'
-            ]
-            );
-            ?>
-
-            <div class="">
-                <?php echo "<?php \$this->beginBlock('main'); ?>\n"; ?>
-
-                <p>
-                    <?php
-                    foreach ($safeAttributes as $attribute) {
-
-                        $prepend = $generator->prependActiveField($attribute, $model);
-                        $field   = $generator->activeField($attribute, $model);
-                        $append  = $generator->appendActiveField($attribute, $model);
-
-                        if ($prepend) {
-                            echo "\n\t\t\t" . $prepend;
-                        }
-                        if ($field) {
-                            echo "\n\t\t\t<?= " . $field . " ?>";
-                        }
-                        if ($append) {
-                            echo "\n\t\t\t" . $append;
-                        }
-                    }
-                    ?>
-
-                </p>
-                <?php echo "<?php \$this->endBlock(); ?>"; ?>
-
-                <?php
-                $label = substr(strrchr($model::className(), "\\"), 1);;
-
-                $items = <<<EOS
-[
-    'label'   => '$label',
-    'content' => \$this->blocks['main'],
-    'active'  => true,
-],
-EOS;
-                ?>
-
-                <?=
-                "<?=
-    Tabs::widget(
-                 [
-                   'encodeLabels' => false,
-                     'items' => [ $items ]
-                 ]
-    );
-    ?>";
-                ?>
-
-                <hr/>
-                <?= "<?php " ?>echo $form->errorSummary($model); ?>
-                <?= "<?= " ?>Html::submitButton(
-                '<span class="glyphicon glyphicon-check"></span> ' .
-                ($model->isNewRecord ? <?= $generator->generateString('Create') ?> : <?= $generator->generateString('Save') ?>),
-                [
-                    'id' => 'save-' . $model->formName(),
-                    'class' => 'btn btn-success'
-                ]
-                );
-                ?>
-
-                <?= "<?php " ?>ActiveForm::end(); ?>
-
-            </div>
-
-        </div>
+    <?= "<?php " ?>ActiveForm::end(); ?>
 
     </div>
-
 </div>

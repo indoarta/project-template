@@ -38,10 +38,7 @@ $this->title = '<?=
 Inflector::camel2words(
     StringHelper::basename($generator->modelClass)
 ) ?> ' . $model-><?= $generator->getNameAttribute() ?>;
-$this->params['breadcrumbs'][] = ['label' => '<?=
-Inflector::pluralize(
-    Inflector::camel2words(StringHelper::basename($generator->modelClass))
-) ?>', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => '<?= Inflector::camel2words(StringHelper::basename($generator->modelClass)) ?>', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => (string)$model-><?=$generator->getNameAttribute() ?>, 'url' => ['view', <?= $urlParams ?>]];
 $this->params['breadcrumbs'][] = <?= $generator->generateString('View') ?>;
 ?>
@@ -50,10 +47,10 @@ $this->params['breadcrumbs'][] = <?= $generator->generateString('View') ?>;
     <!-- menu buttons -->
     <p class='pull-left'>
         <?= "<?= " ?>Html::a('<span class="glyphicon glyphicon-pencil"></span> ' . <?= $generator->generateString('Edit') ?>, ['update', <?= $urlParams ?>],['class' => 'btn btn-info']) ?>
-        <?= "<?= " ?>Html::a('<span class="glyphicon glyphicon-plus"></span> ' . <?= $generator->generateString('New') ?>, ['create'], ['class' => 'btn btn-success']) ?>
+        <?= "<?= " ?>Html::a('<span class="glyphicon glyphicon-plus"></span> ' . <?= $generator->generateString('Tambah Baru') ?>, ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <p class="pull-right">
-        <?= "<?= " ?>Html::a('<span class="glyphicon glyphicon-list"></span> ' . <?= $generator->generateString('List '.Inflector::pluralize(StringHelper::basename($generator->modelClass))) ?>, ['index'], ['class'=>'btn btn-default']) ?>
+        <?= "<?= " ?>Html::a('<span class="glyphicon glyphicon-list"></span> ' . <?= $generator->generateString('Daftar '. Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>, ['index'], ['class'=>'btn btn-default']) ?>
     </p>
 
     <div class="clearfix"></div>
@@ -68,20 +65,11 @@ $this->params['breadcrumbs'][] = <?= $generator->generateString('View') ?>;
     <?php endif; ?>" ?>
 
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h2>
-                <?= "<?= \$model->" . $generator->getModelNameAttribute($generator->modelClass) . " ?>" ?>
-            </h2>
-        </div>
-
-        <div class="panel-body">
-
-
-
-    <?php
-    echo "<?php \$this->beginBlock('{$generator->modelClass}'); ?>\n";
-    ?>
+    <div class="box box-info">
+        <div class="box-body">
+            <?php
+            echo "<?php \$this->beginBlock('{$generator->modelClass}'); ?>\n";
+            ?>
 
     <?= "<?= " ?>DetailView::widget([
     'model' => $model,
@@ -129,7 +117,7 @@ EOS;
         $showAllRecords = false;
 
         if ($relation->via !== null) {
-            $pivotName     = Inflector::pluralize($generator->getModelByTableName($relation->via->from[0]));
+            $pivotName     = $generator->getModelByTableName($relation->via->from[0]);
             $pivotRelation = $model->{'get' . $pivotName}();
             $pivotPk       = key($pivotRelation->link);
 
@@ -157,7 +145,7 @@ EOS;
         ) ?>\n";
         // TODO: support multiple PKs
         echo "  <?= Html::a(
-            '<span class=\"glyphicon glyphicon-plus\"></span> ' . " . $generator->generateString('New') . " . ' " .
+            '<span class=\"glyphicon glyphicon-plus\"></span> ' . " . $generator->generateString('Tambah Baru') . " . ' " .
             Inflector::singularize(Inflector::camel2words($name)) . "',
             ['" . $generator->createRelationRoute($relation, 'create') . "', '" .
             Inflector::singularize($name) . "' => ['" . key($relation->link) . "' => \$model->" . $model->primaryKey()[0] . "]],
