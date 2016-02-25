@@ -196,7 +196,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `user` (`id`, `username`, `password`, `name`, `role_id`, `photo_url`, `last_login`, `last_logout`) VALUES
-(1,	'admin',	'21232f297a57a5a743894a0e4a801fc3',	'Administrator',	1,	'ID6jM8Az7Yh_R6LR44Ezh02VECKTQ_Ya.png',	'2015-12-16 22:35:47',	'2015-12-16 22:35:47'),
+(1,	'admin',	'21232f297a57a5a743894a0e4a801fc3',	'Administrator',	1,	'default.png',	'2015-12-16 22:35:47',	'2016-02-25 12:45:17'),
 (2,	'user',	'ee11cbb19052e40b07aac0ca060c23ee',	'Regular User',	3,	'default.png',	NULL,	NULL);
 
--- 2015-12-18 23:02:47
+-- 2016-02-25 05:46:24

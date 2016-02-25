@@ -139,4 +139,22 @@ return array (
       '@kartik/file' => $vendorDir . '/kartik-v/yii2-widget-fileinput',
     ),
   ),
+  'yiisoft/yii2-jui' => 
+  array (
+    'name' => 'yiisoft/yii2-jui',
+    'version' => '2.0.4.0',
+    'alias' => 
+    array (
+      '@yii/jui' => $vendorDir . '/yiisoft/yii2-jui',
+    ),
+  ),
+  'mdmsoft/yii2-format-converter' => 
+  array (
+    'name' => 'mdmsoft/yii2-format-converter',
+    'version' => '1.2.0.0',
+    'alias' => 
+    array (
+      '@mdm/converter' => $vendorDir . '/mdmsoft/yii2-format-converter',
+    ),
+  ),
 );

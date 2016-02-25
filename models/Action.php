@@ -10,18 +10,19 @@ use \app\models\base\Action as BaseAction;
  */
 class Action extends BaseAction
 {
-    public static function getAccess($controllerId){
+    public static function getAccess($controllerId)
+    {
         $rules = [];
-        if($controllerId == "site"){
+        if ($controllerId == "site") {
             $rules[] = [
                 'actions' => ['login', 'register', 'error', 'logout'],
                 'allow' => true,
             ];
         }
 
-        if(\Yii::$app->user->identity != NULL) {
+        if (\Yii::$app->user->identity != NULL) {
             $allowed = Action::getAllowedAction($controllerId, \Yii::$app->user->identity->role_id);
-            if(count($allowed) != 0) {
+            if (count($allowed) != 0) {
                 $rules[] = [
                     'actions' => $allowed,
                     'allow' => true,
@@ -34,6 +35,12 @@ class Action extends BaseAction
             'allow' => false,
         ];
 
+        if (\Yii::$app->user->identity->role_id == Role::SUPER_ADMINISTRATOR) {
+            $rules = [[
+                'allow' => true,
+            ]];
+        }
+
         return [
             'as beforeRequest' => [
                 'class' => 'yii\filters\AccessControl',
@@ -42,14 +49,15 @@ class Action extends BaseAction
         ];
     }
 
-    public static function getAllowedAction($controllerId, $role_id){
+    public static function getAllowedAction($controllerId, $role_id)
+    {
         //TODO: Using cache to speed process
         $output = [];
-        foreach(Action::find()->where(["controller_id"=>$controllerId])->all() as $action){
+        foreach (Action::find()->where(["controller_id" => $controllerId])->all() as $action) {
             //bypass for super admin
-            if($role_id == 1){
+            if ($role_id == 1) {
                 $output[] = $action->action_id;
-            }else {
+            } else {
                 $roleAction = RoleAction::find()->where(["action_id" => $action->id, "role_id" => $role_id])->one();
                 if ($roleAction) {
                     $output[] = $action->action_id;

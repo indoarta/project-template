@@ -11,6 +11,10 @@ use yii\helpers\Html;
  */
 class Role extends BaseRole
 {
+    const SUPER_ADMINISTRATOR = 1;
+    const ADMINISTRATOR = 2;
+    const REGULAR_USER = 3;
+
     public function getRoleMenuColumn(){
         return Html::a("Set Menu", ["role/detail", "id"=>$this->id], ["class"=>"btn btn-primary"]);
     }

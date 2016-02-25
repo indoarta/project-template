@@ -3,7 +3,8 @@
 $params = require(__DIR__ . '/params.php');
 
 $config = [
-    'id' => 'basic',
+    'id' => 'project-template',
+    'name' => 'Yii2 Project Template',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
@@ -48,6 +49,10 @@ $config = [
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ),
+        ],
+        'formatter' => [
+            'dateFormat' => 'd-MMM-Y',
+            'datetimeFormat' => 'd-MMM-Y, H:i',
         ],
         /*
         'view' => [
