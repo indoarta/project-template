@@ -22,7 +22,8 @@
         "schmunk42/yii2-giiant": "@stable",
         "kartik-v/yii2-widget-fileinput": "@dev",
         "yiisoft/yii2-jui": "^2.0",
-        "mdmsoft/yii2-format-converter": "~1.0"
+        "mdmsoft/yii2-format-converter": "~1.0",
+        "kartik-v/yii2-widget-select2": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

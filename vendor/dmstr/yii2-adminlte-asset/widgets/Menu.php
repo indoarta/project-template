@@ -146,6 +146,9 @@ class Menu extends \yii\widgets\Menu
             }
             $arrayRoute = explode('/', ltrim($route, '/'));
             $arrayThisRoute = explode('/', $this->route);
+            if ($arrayRoute[0] == $arrayThisRoute[0]) {
+                return true;
+            }
             if ($arrayRoute[0] !== $arrayThisRoute[0]) {
                 return false;
             }

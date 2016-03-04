@@ -10,4 +10,7 @@ use \app\models\base\Menu as BaseMenu;
  */
 class Menu extends BaseMenu
 {
+    public function getIconNoPrefix(){
+        return substr($this->icon, 3);
+    }
 }

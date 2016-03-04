@@ -20,12 +20,14 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/site.css',
         'css/masterslider.css',
+        'css/iconpicker.css',
     ];
     public $js = [
         'js/main.js',
         'js/masterslider.js',
         'js/jquery.easing.js',
         'js/rowsorter.js',
+        'js/iconpicker.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

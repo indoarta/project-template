@@ -73,7 +73,9 @@ class MenuController extends Controller
 		$model = new Menu;
 
 		try {
-            if ($model->load($_POST) && $model->save()) {
+            if ($model->load($_POST)){
+                $model->icon = "fa ".$model->icon;
+                $model->save();
                 return $this->redirect(Url::previous());
             } elseif (!\Yii::$app->request->isPost) {
                 $model->load($_GET);
@@ -146,6 +148,7 @@ class MenuController extends Controller
             $menu->controller = $obj[2];
             $menu->parent_id = $obj[3];
             $menu->order = $no;
+            $menu->icon = "fa ".$obj[4];
             $menu->save();
             $no++;
         }

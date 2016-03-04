@@ -38,6 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <th>No</th>
                         <th>Nama Menu</th>
                         <th>Controller</th>
+                        <th>Ikon</th>
                         <th>Induk</th>
                         <th style="width: 50px">#</th>
                     </tr>
@@ -53,10 +54,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         $controller = Html::textInput("controller", $menu->controller, ["class"=>"form-control controller"]);
                         $parent = Html::dropDownList("parent_id", $menu->parent_id, $parents, ["class"=>"form-control parent_id", "prompt"=>"-"]);
                         $button = "<i class='fa fa-arrows'></i>";
+                        $icp = Html::textInput("icon", $menu->iconNoPrefix, ["class"=>"form-control icon icp-auto"]);
                         echo "<tr style='background-color: #FFFCE7;' data='{$menu->id}'>
                             <td>{$no}</td>
                             <td>{$name}</td>
                             <td>{$controller}</td>
+                            <td>{$icp}</td>
                             <td>{$parent}</td>
                             <td class='sorterer'>{$button}</td>
                             </tr>";
@@ -66,10 +69,12 @@ $this->params['breadcrumbs'][] = $this->title;
                             $controller = Html::textInput("controller", $menu2->controller, ["class"=>"form-control controller"]);
                             $parent = Html::dropDownList("parent_id", $menu2->parent_id, $parents, ["class"=>"form-control parent_id", "prompt"=>"-"]);
                             $button = "<i class='fa fa-arrows'></i>";
+                            $icp = Html::textInput("icon", $menu2->iconNoPrefix, ["class"=>"form-control icon icp-auto"]);
                             echo "<tr data='{$menu2->id}'>
                             <td>{$no}</td>
                             <td>{$name}</td>
                             <td>{$controller}</td>
+                            <td>{$icp}</td>
                             <td>{$parent}</td>
                             <td class='sorterer'>{$button}</td>
                             </tr>";
@@ -99,6 +104,7 @@ $("#simpanBtn").click(function(){
         obj.push($(this).find(".name").val());
         obj.push($(this).find(".controller").val());
         obj.push($(this).find(".parent_id").val());
+        obj.push($(this).find(".icon").val());
         arr.push(obj.join("[=]"));
     });
     console.log(arr.join("||"));
@@ -114,6 +120,8 @@ $("#simpanBtn").click(function(){
     });
     return false;
 });
+
+$(".icp-auto").iconpicker();
 
 ');
 ?>

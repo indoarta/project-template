@@ -11,6 +11,8 @@ LIBRARIES USED
 - [kartik-v/yii2-widget-fileinput](https://github.com/kartik-v/yii2-widget-fileinput) (For File Upload)
 - [yiisoft/yii2-jui](https://github.com/yiisoft/yii2-jui) (For Datepicker)
 - [mdmsoft/yii2-format-converter](https://github.com/mdmsoft/yii2-format-converter) (For Indonesian Date)
+- [kartik-v/yii2-widget-select2](https://github.com/kartik-v/yii2-widget-select2) (For Select2 Widget)
+- [mjolnic/fontawesome-iconpicker](https://github.com/mjolnic/fontawesome-iconpicker) (For FontAwesome Picker)
 	
 FEATURES
 --------
@@ -72,4 +74,26 @@ public function behaviors()
     }
 ~~~
 
+**Kartik Select2**
 
+~~~
+use kartik\select2\Select2;
+
+// Normal select with ActiveForm & model
+echo $form->field($model, 'state_1')->widget(Select2::classname(), [
+    'data' => $data,
+    'language' => 'de',
+    'options' => ['placeholder' => 'Select a state ...'],
+    'pluginOptions' => [
+        'allowClear' => true
+    ],
+]);
+
+// Multiple select without model
+echo Select2::widget([
+    'name' => 'state_2',
+    'value' => '',
+    'data' => $data,
+    'options' => ['multiple' => true, 'placeholder' => 'Select states ...']
+]);
+~~~
