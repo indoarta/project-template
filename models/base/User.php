@@ -55,11 +55,11 @@ class User extends \yii\db\ActiveRecord
             'id' => 'ID',
             'username' => 'Username',
             'password' => 'Password',
-            'name' => 'Name',
-            'role_id' => 'Role ID',
-            'photo_url' => 'Photo Url',
-            'last_login' => 'Last Login',
-            'last_logout' => 'Last Logout',
+            'name' => 'Nama',
+            'role_id' => 'Hak Akses',
+            'photo_url' => 'Foto',
+            'last_login' => 'Login Terakhir',
+            'last_logout' => 'Logout Terakhir',
         ];
     }
 

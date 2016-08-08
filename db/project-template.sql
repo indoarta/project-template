@@ -36,7 +36,9 @@ INSERT INTO `action` (`id`, `controller_id`, `action_id`, `name`) VALUES
 (30,	'user',	'view',	'View'),
 (31,	'user',	'create',	'Create'),
 (32,	'user',	'update',	'Update'),
-(33,	'user',	'delete',	'Delete');
+(33,	'user',	'delete',	'Delete'),
+(34,	'site',	'register',	'Register'),
+(35,	'menu',	'save',	'Save');
 
 DROP TABLE IF EXISTS `menu`;
 CREATE TABLE `menu` (
@@ -53,11 +55,11 @@ CREATE TABLE `menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `menu` (`id`, `name`, `controller`, `action`, `icon`, `order`, `parent_id`) VALUES
-(1,	'Home',	'site',	'index',	'fa fa-home',	1,	NULL),
+(1,	'Beranda',	'site',	'index',	'fa fa-home',	1,	NULL),
 (2,	'Master',	'',	'index',	'fa fa-database',	2,	NULL),
 (3,	'Menu',	'menu',	'index',	'fa fa-circle-o',	3,	2),
-(4,	'Role',	'role',	'index',	'fa fa-circle-o',	4,	2),
-(5,	'User',	'user',	'index',	'fa fa-circle-o',	5,	2);
+(4,	'Hak Akses',	'role',	'index',	'fa fa-circle-o',	4,	2),
+(5,	'Pengguna',	'user',	'index',	'fa fa-circle-o',	5,	2);
 
 DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
@@ -196,7 +198,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `user` (`id`, `username`, `password`, `name`, `role_id`, `photo_url`, `last_login`, `last_logout`) VALUES
-(1,	'admin',	'21232f297a57a5a743894a0e4a801fc3',	'Administrator',	1,	'default.png',	'2015-12-16 22:35:47',	'2016-02-25 12:45:17'),
+(1,	'admin',	'21232f297a57a5a743894a0e4a801fc3',	'Administrator',	1,	'default.png',	'2016-08-08 10:17:32',	'2016-02-25 12:45:17'),
 (2,	'user',	'ee11cbb19052e40b07aac0ca060c23ee',	'Regular User',	3,	'default.png',	NULL,	NULL);
 
--- 2016-02-25 05:46:24
+-- 2016-08-08 03:37:12

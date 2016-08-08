@@ -51,12 +51,12 @@ class Menu extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'name' => 'Nama',
             'controller' => 'Controller',
             'action' => 'Action',
-            'icon' => 'Icon',
-            'order' => 'Order',
-            'parent_id' => 'Parent ID',
+            'icon' => 'Ikon',
+            'order' => 'Urutan',
+            'parent_id' => 'Menu Induk',
         ];
     }
 

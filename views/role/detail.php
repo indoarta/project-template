@@ -10,14 +10,14 @@ use \yii\helpers\Inflector;
  * @var app\models\Role $model
  */
 
-$this->title = 'Role ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Roles', 'url' => ['index']];
+$this->title = 'Hak Akses - ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Hak Akses', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => "Set Menu untuk ".$model->name, 'url' => ['view', 'id' => $model->id]];
 ?>
 <?php $form = ActiveForm::begin(['id' => 'my-form']); ?>
 <div class="box box-success">
     <div class="box-header">
-        <h3 class="box-title">Choose Menu for Role <?= $model->name; ?></h3>
+        <h3 class="box-title">Pilih Menu untuk Hak Akses <?= $model->name; ?></h3>
     </div>
     <div class="box-body">
         <?php
@@ -100,7 +100,7 @@ $this->params['breadcrumbs'][] = ['label' => "Set Menu untuk ".$model->name, 'ur
             <i class="fa fa-check"></i> Select/Deselect All
         </button>
         <button class="btn btn-success" type="submit">
-            <i class="fa fa-save"></i> Save
+            <i class="fa fa-save"></i> Simpan
         </button>
     </div>
 </div>

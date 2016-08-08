@@ -10,100 +10,57 @@ use yii\grid\GridView;
  * @var app\models\search\RoleSearch $searchModel
  */
 
-$this->title = 'Roles';
+$this->title = 'Hak Akses';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="giiant-crud role-index">
+<p>
+    <?= Html::a('<i class="fa fa-plus"></i> Tambah', ['create'], ['class' => 'btn btn-success']) ?>
+</p>
 
-    <?php //     echo $this->render('_search', ['model' =>$searchModel]);
-    ?>
+<div class="box box-info">
+    <div class="box-body">
+        <?php \yii\widgets\Pjax::begin(['id' => 'pjax-main', 'enableReplaceState' => false, 'linkSelector' => '#pjax-main ul.pagination a, th a', 'clientOptions' => ['pjax:success' => 'function(){alert("yo")}']]) ?>
 
-    <div class="clearfix">
-        <p class="pull-left">
-            <?= Html::a('<span class="glyphicon glyphicon-plus"></span> ' . 'New', ['create'], ['class' => 'btn btn-success']) ?>
-        </p>
+        <?= GridView::widget([
+            'layout' => '{summary}{pager}{items}{pager}',
+            'dataProvider' => $dataProvider,
+            'pager' => [
+                'class' => yii\widgets\LinkPager::className(),
+                'firstPageLabel' => 'First',
+                'lastPageLabel' => 'Last'],
+            'filterModel' => $searchModel,
+            'tableOptions' => ['class' => 'table table-striped table-bordered table-hover'],
+            'headerRowOptions' => ['class' => 'x'],
+            'columns' => [
 
-        <div class="pull-right">
-
-
-            <?=
-            \yii\bootstrap\ButtonDropdown::widget(
                 [
-                    'id' => 'giiant-relations',
-                    'encodeLabel' => false,
-                    'label' => '<span class="glyphicon glyphicon-paperclip"></span> ' . 'Relations',
-                    'dropdown' => [
-                        'options' => [
-                            'class' => 'dropdown-menu-right'
-                        ],
-                        'encodeLabels' => false,
-                        'items' => [[
-                            'url' => ['role-menu/index'],
-                            'label' => '<i class="glyphicon glyphicon-arrow-right">&nbsp;' . 'Role Menu' . '</i>',
-                        ], [
-                            'url' => ['user/index'],
-                            'label' => '<i class="glyphicon glyphicon-arrow-right">&nbsp;' . 'User' . '</i>',
-                        ],]
+                    'class' => 'yii\grid\ActionColumn',
+                    'template' => '{update} {delete} {role-menu}',
+                    'buttons' => [
+                        'view' => function ($url, $model, $key) {
+                            return Html::a("<i class='fa fa-eye'></i>", ["view", "id" => $model->id], ["class" => "btn btn-success", "title" => "Lihat Data"]);
+                        },
+                        'update' => function ($url, $model, $key) {
+                            return Html::a("<i class='fa fa-pencil'></i>", ["update", "id" => $model->id], ["class" => "btn btn-warning", "title" => "Edit Data"]);
+                        },
+                        'delete' => function ($url, $model, $key) {
+                            return Html::a("<i class='fa fa-trash'></i>", ["delete", "id" => $model->id], [
+                                "class" => "btn btn-danger",
+                                "title" => "Hapus Data",
+                                "data-confirm" => "Apakah Anda yakin ingin menghapus data ini ?",
+                                //"data-method" => "GET"
+                            ]);
+                        },
+                        'role-menu' => function ($url, $model, $key) {
+                            return Html::a("<i class='fa fa-cog'></i>", ["detail", "id" => $model->id], ["class" => "btn btn-info", "title" => "Detail"]);
+                        },
                     ],
-                    'options' => [
-                        'class' => 'btn-default'
-                    ]
-                ]
-            );
-            ?>
-        </div>
+                    'contentOptions' => ['nowrap' => 'nowrap', 'style' => 'text-align:center;width:140px']
+                ],
+                'name',
+            ],
+        ]); ?>
+        <?php \yii\widgets\Pjax::end() ?>
     </div>
-
-
-    <?php \yii\widgets\Pjax::begin(['id' => 'pjax-main', 'enableReplaceState' => false, 'linkSelector' => '#pjax-main ul.pagination a, th a', 'clientOptions' => ['pjax:success' => 'function(){alert("yo")}']]) ?>
-
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h2>
-                <i><?= 'Roles' ?></i>
-            </h2>
-        </div>
-
-        <div class="panel-body">
-
-            <div class="table-responsive">
-                <?= GridView::widget([
-                    'layout' => '{summary}{pager}{items}{pager}',
-                    'dataProvider' => $dataProvider,
-                    'pager' => [
-                        'class' => yii\widgets\LinkPager::className(),
-                        'firstPageLabel' => 'First',
-                        'lastPageLabel' => 'Last'],
-                    'filterModel' => $searchModel,
-                    'tableOptions' => ['class' => 'table table-striped table-bordered table-hover'],
-                    'headerRowOptions' => ['class' => 'x'],
-                    'columns' => [
-
-                        [
-                            'class' => 'yii\grid\ActionColumn',
-                            'urlCreator' => function ($action, $model, $key, $index) {
-                                // using the column name as key, not mapping to 'id' like the standard generator
-                                $params = is_array($key) ? $key : [$model->primaryKey()[0] => (string)$key];
-                                $params[0] = \Yii::$app->controller->id ? \Yii::$app->controller->id . '/' . $action : $action;
-                                return Url::toRoute($params);
-                            },
-                            'contentOptions' => ['nowrap' => 'nowrap']
-                        ],
-                        'name',
-                        [
-                            "attribute" => "roleMenuColumn",
-                            "format" => "raw"
-                        ]
-                    ],
-                ]); ?>
-            </div>
-
-        </div>
-
-    </div>
-
-    <?php \yii\widgets\Pjax::end() ?>
-
-
 </div>
