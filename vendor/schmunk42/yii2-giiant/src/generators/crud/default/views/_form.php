@@ -61,8 +61,12 @@ use \dmstr\bootstrap\Tabs;
         ?>
         <hr/>
         <?= "<?php " ?>echo $form->errorSummary($model); ?>
-        <?= "<?= " ?>Html::submitButton("<i class="fa fa-save"></i> Simpan", ['id' => 'save-' . $model->formName(), 'class' => 'btn btn-success']);
-        ?>
+        <div class="row">
+            <div class="col-md-offset-3 col-md-10">
+                <?= "<?= " ?> Html::submitButton('<i class="fa fa-save"></i> Simpan', ['class' => 'btn btn-success']); ?>
+                <?= "<?= " ?> Html::a('<i class="fa fa-chevron-left"></i> Kembali', ['index'], ['class' => 'btn btn-default']) ?>
+            </div>
+        </div>
 
     <?= "<?php " ?>ActiveForm::end(); ?>
 

@@ -41,11 +41,9 @@ $this->title = <?= $generator->generateString(Inflector::camel2words(StringHelpe
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="clearfix">
-    <p class="pull-left">
-        <?= "<?= " ?>Html::a('<span class="fa fa-plus"></span> ' . <?= $generator->generateString('Tambah Baru') ?>, ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-</div>
+<p>
+    <?= "<?= " ?>Html::a('<i class="fa fa-plus"></i> Tambah Baru', ['create'], ['class' => 'btn btn-success']) ?>
+</p>
 
 
 <?php if ($generator->indexWidgetType === 'grid'): ?>
@@ -68,21 +66,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'columns' => [
 
             <?php
-            $actionButtonColumn = <<<PHP
-        [
-            'class' => '{$generator->actionButtonClass}',
-            'urlCreator' => function(\$action, \$model, \$key, \$index) {
-                // using the column name as key, not mapping to 'id' like the standard generator
-                \$params = is_array(\$key) ? \$key : [\$model->primaryKey()[0] => (string) \$key];
-                \$params[0] = \Yii::\$app->controller->id ? \Yii::\$app->controller->id . '/' . \$action : \$action;
-                return Url::toRoute(\$params);
-            },
-            'contentOptions' => ['nowrap'=>'nowrap']
-        ],
-PHP;
-
                 // action buttons first
-                    echo $actionButtonColumn;
+                    echo "\\app\\components\\ActionButton::getButtons(),\n";
 
                     $count = 0;
                     echo "\n"; // code-formatting

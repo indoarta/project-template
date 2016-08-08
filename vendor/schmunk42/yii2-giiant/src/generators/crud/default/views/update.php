@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = <?= $generator->generateString('Edit') ?>;
 ?>
 
 <p>
-    <?= "<?= " ?>Html::a('<span class="glyphicon glyphicon-eye-open"></span> ' . <?= $generator->generateString('View') ?>, ['view', <?= $urlParams ?>], ['class' => 'btn btn-default']) ?>
+    <?= "<?= " ?>Html::a('<i class="fa fa-eye-open"></i> Lihat', ['view', <?= $urlParams ?>], ['class' => 'btn btn-default']) ?>
 </p>
 
 <?= "<?php " ?>echo $this->render('_form', [

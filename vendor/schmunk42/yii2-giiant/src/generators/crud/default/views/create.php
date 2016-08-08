@@ -23,10 +23,9 @@ $this->params['breadcrumbs'][] = ['label' => '<?= Inflector::camel2words(StringH
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<p class="pull-left">
+<p>
     <?= "<?= " ?>Html::a(<?= $generator->generateString('Kembali') ?>, \yii\helpers\Url::previous(), ['class' => 'btn btn-default']) ?>
 </p>
-<div class="clearfix"></div>
 
 <?= "<?= " ?>$this->render('_form', [
 'model' => $model,
